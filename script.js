@@ -106,6 +106,16 @@ function addWord() {
     const input = document.getElementById('newWord');
     const word = input.value.trim().toUpperCase();
 
+    if (!word) {
+        alert('Word cannot be empty.');
+        return;
+    }
+
+    if (wordBank.includes(word)) {
+        alert('This word already exists.');
+        return;
+    }
+
     wordBank.push(word);
     input.value = '';
     saveWordBank();
