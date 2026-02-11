@@ -106,11 +106,6 @@ function addWord() {
     const input = document.getElementById('newWord');
     const word = input.value.trim().toUpperCase();
 
-    if (!word) {
-        alert('Word cannot be empty.');
-        return;
-    }
-
     wordBank.push(word);
     input.value = '';
     saveWordBank();
@@ -128,6 +123,7 @@ function editWord(index) {
 
 function deleteWord(index) {
     if (confirm('Are you sure you want to delete this word?')) {
+        wordBank.splice(index, 1);
         saveWordBank();
         displayWordBank();
     }
