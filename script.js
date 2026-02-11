@@ -144,11 +144,19 @@ function generateKeyboard() {
 }
 
 function startGame() {
-    const p1Name = document.getElementById('player1Name').value.trim();
-    const p2Name = document.getElementById('player2Name').value.trim();
+    const p1NameRaw = document.getElementById('player1Name').value.trim();
+    const p2NameRaw = document.getElementById('player2Name').value.trim();
 
-    gameState.player1.name = p1Name || 'Player 1';
-    gameState.player2.name = p2Name || 'Player 2';
+    const p1Compare = p1NameRaw.toLowerCase();
+    const p2Compare = p2NameRaw.toLowerCase();
+
+    if (p1NameRaw && p2NameRaw && p1Compare === p2Compare) {
+        alert('Player names must be different.');
+        return;
+    }
+
+    gameState.player1.name = p1NameRaw || 'Player 1';
+    gameState.player2.name = p2NameRaw || 'Player 2';
 
     document.getElementById('player1Display').textContent = gameState.player1.name;
     document.getElementById('player2Display').textContent = gameState.player2.name;
@@ -157,6 +165,7 @@ function startGame() {
 
     nextRound();
 }
+
 
 function nextRound() {
     if (wordBank.length === 0) {
