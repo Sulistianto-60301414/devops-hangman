@@ -113,12 +113,18 @@ function addWord() {
 }
 
 function editWord(index) {
-    const newWord = prompt('Edit word:', wordBank[index]);
-    if (newWord) {
-        wordBank.splice(index, 1);
-        saveWordBank();
-        displayWordBank();
+    const newWordRaw = prompt('Edit word:', wordBank[index]);
+    if (newWordRaw === null) return; // user cancelled
+
+    const newWord = newWordRaw.trim().toUpperCase();
+    if (!newWord) {
+        alert('Word cannot be empty.');
+        return;
     }
+
+    wordBank[index] = newWord;
+    saveWordBank();
+    displayWordBank();
 }
 
 function deleteWord(index) {
