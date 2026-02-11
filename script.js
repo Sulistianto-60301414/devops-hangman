@@ -189,6 +189,9 @@ function guessLetter(letter) {
     }
 
     gameState.guessedLetters.push(letter);
+    const keyBtn = document.getElementById('key-' + letter);
+    if (keyBtn) keyBtn.disabled = true;
+
 
     if (!gameState.currentWord.includes(letter)) {
         gameState.wrongGuesses++;
